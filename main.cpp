@@ -36,7 +36,7 @@ int main(int argc, char** argv)
 {
     Mat src, src_gray;
     /// Load an image
-    src = imread("road_signs.png");
+    src = imread("photo5.jpg");
     //src = imread("sign.jpg");
 
     if (!src.data)
@@ -80,38 +80,38 @@ int main(int argc, char** argv)
     imshow("detectedtext", src);
 
 
-//////////////// UNCOMMENT IF YOU WANT TO PRINT INTERMEDIATE STAGES ///////////////////////////
-//    Mat segmented_image = cv::Mat(src.rows, src.cols, CV_8UC3, cv::Scalar(0, 0, 0));
-//    paintComponents(&segmented_image, components);
-//    Mat filtered_components = cv::Mat(src.rows, src.cols, CV_8UC3, cv::Scalar(0, 0, 0));
-//    paintComponents(&filtered_components, valid_components);
-//    Mat words_image = cv::Mat(src.rows, src.cols, CV_8UC3, cv::Scalar(0, 0, 0));
-//    for (std::vector<std::vector<Component > >::iterator it = words.begin(); it != words.end(); it++){
-//        paintComponents(&words_image, *it);
-//    }
-//    //////////////////////Prettier SWTimage/////////////////
-//    SWTimage.convertTo(SWTimage, CV_8U, 1.0);
-//    uchar *ptr4;
-//    for (int i = 0; i < SWTimage.rows; i++){
-//        ptr4 = SWTimage.ptr<uchar>(i);
-//        for (int j = 0; j < SWTimage.cols; j++){
-//            if (ptr4[j] == 0){
-//                ptr4[j] = 255;
-//            }
-//            else
-//                ptr4[j] = (int)(ptr4[j] * 3 );
-//        }
-//    }
-//    namedWindow("edges", CV_WINDOW_AUTOSIZE);
-//    namedWindow("SWT", CV_WINDOW_AUTOSIZE);
-//    namedWindow("segemented", CV_WINDOW_AUTOSIZE);
-//    namedWindow("components_filtered", CV_WINDOW_AUTOSIZE);
-//    namedWindow("words", CV_WINDOW_AUTOSIZE);
-//    imshow("edges", detected_edges);
-//    imshow("SWT", SWTimage);
-//    imshow("segemented", segmented_image);
-//    imshow("components_filtered", filtered_components);
-//    imshow("words", words_image);
+////////////// UNCOMMENT IF YOU WANT TO PRINT INTERMEDIATE STAGES ///////////////////////////
+    Mat segmented_image = cv::Mat(src.rows, src.cols, CV_8UC3, cv::Scalar(0, 0, 0));
+    paintComponents(&segmented_image, components);
+    Mat filtered_components = cv::Mat(src.rows, src.cols, CV_8UC3, cv::Scalar(0, 0, 0));
+    paintComponents(&filtered_components, valid_components);
+    Mat words_image = cv::Mat(src.rows, src.cols, CV_8UC3, cv::Scalar(0, 0, 0));
+    for (std::vector<std::vector<Component > >::iterator it = words.begin(); it != words.end(); it++){
+        paintComponents(&words_image, *it);
+    }
+    //////////////////////Prettier SWTimage/////////////////
+    SWTimage.convertTo(SWTimage, CV_8U, 1.0);
+    uchar *ptr4;
+    for (int i = 0; i < SWTimage.rows; i++){
+        ptr4 = SWTimage.ptr<uchar>(i);
+        for (int j = 0; j < SWTimage.cols; j++){
+            if (ptr4[j] == 0){
+                ptr4[j] = 255;
+            }
+            else
+                ptr4[j] = (int)(ptr4[j] * 3 );
+        }
+    }
+    namedWindow("edges", CV_WINDOW_AUTOSIZE);
+    namedWindow("SWT", CV_WINDOW_AUTOSIZE);
+    namedWindow("segemented", CV_WINDOW_AUTOSIZE);
+    namedWindow("components_filtered", CV_WINDOW_AUTOSIZE);
+    namedWindow("words", CV_WINDOW_AUTOSIZE);
+    imshow("edges", detected_edges);
+    imshow("SWT", SWTimage);
+    imshow("segemented", segmented_image);
+    imshow("components_filtered", filtered_components);
+    imshow("words", words_image);
 
     /// Wait until user exit program by pressing a key
     waitKey(0);

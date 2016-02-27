@@ -99,18 +99,18 @@ int Component::isValid(){
     assert(stats);
     /*int width = (int)(maxx - minx + 1);
     int height = (int)(maxy - miny + 1);*/
-    if (variance > 0.5 * mean){
+    if (variance > 0.6 * mean){
         return 0;
     }
     float width = (float)(maxx - minx);
     float height = (float)(maxy - miny);
 
     // check font height
-    if (height > 80) {
+    if (height > 200) {
         return 0;
     }
 
-    if (width > 60) {
+    if (width > 200) {
         return 0;
     }
 
